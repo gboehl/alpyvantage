@@ -1,11 +1,8 @@
-import re
 import pandas as pd
-import requests
-import inspect
 
 
 def _format_to_pandas(call_response, data_key):
-    # mainly stolen from alpha_vantage package
+    # mainly taken from alpha_vantage package: https://github.com/RomelTorres/alpha_vantage
     meta_data_key = 'Meta Data'
 
     if data_key is not None:
@@ -53,25 +50,4 @@ def _format_to_pandas(call_response, data_key):
     data_pandas.index = pd.to_datetime(data_pandas.index)
     data_pandas.columns = [col.split('. ')[1] for col in data_pandas.columns]
     return data_pandas, meta_data
-
-
-class API(object):
-
-    raw_url = 'https://www.alphavantage.co/query?'
-
-    def __init__(self, api_key):
-        self.key = api_key
-
-    def time_series_intraday(self, symbol, interval='1min', outputsize='full', **kwargs):
-        this_frame = inspect.currentframe()
-        func_args, _, _, func_values = inspect.getargvalues(this_frame)
-        kwargs.update({'function': 'TIME_SERIES_INTRADAY', 'apikey': self.key})
-        kwargs.update({k:v for k,v in func_values.items() if k in func_args and k != 'self'})
-        
-        url = self.raw_url + '&'.join([k + '=' + str(kwargs[k]) for k in kwargs])
-        data_key = "Time Series ({})".format(interval)
-        r = requests.get(url)
-        data_raw = r.json()
-        return _format_to_pandas(data_raw, data_key)
-
 
