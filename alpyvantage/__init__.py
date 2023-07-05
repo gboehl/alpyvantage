@@ -58,10 +58,13 @@ class API(object):
             [k for k in kwargs if k not in self.ordering]
         url = self.raw_url + \
             '&'.join([k + '=' + str(kwargs[k]) for k in ordered_keys])
-        print(url)
         r = requests.get(url)
-        data_raw = r.json()
+        # catch server errors
+        if r.status_code != 200:
+            raise ConnectionError(
+                f"Server request status code is {r.status_code}.")
 
+        data_raw = r.json()
         # API error handling
         if 'Note' in data_raw:
             raise AlphaVantageError(data_raw['Note'])
