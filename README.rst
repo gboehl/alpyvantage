@@ -12,6 +12,9 @@ alpyvantage
 .. image:: https://badge.fury.io/py/alpyvantage.svg
     :target: https://badge.fury.io/py/alpyvantage
 
+.. image:: https://github.com/gboehl/alpyvantage/actions/workflows/continuous-integration.yml/badge.svg
+    :target: https://github.com/gboehl/alpyvantage/actions
+
 **alpyvantage** provides a python backend to the Alpha Vantage API. Alpha Vantage provides access to a wide range of financial data and time series. Details can be found in the `official API documentation <https://www.alphavantage.co/documentation/>`_. You can get a free `API key here <https://www.alphavantage.co/support/#api-key>`_.
 
 
