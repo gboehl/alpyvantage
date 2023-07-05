@@ -2,9 +2,8 @@
 import pandas as pd
 
 
-def _format_to_pandas(call_response, data_key):
+def _format_to_pandas(call_response, data_key, meta_data_key='Meta Data', **kwargs):
     # mainly taken from alpha_vantage package: https://github.com/RomelTorres/alpha_vantage
-    meta_data_key = 'Meta Data'
 
     if data_key is not None:
         data = call_response[data_key]

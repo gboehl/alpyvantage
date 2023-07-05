@@ -72,7 +72,7 @@ class API(object):
 
         # return as pandas dataframe if desired
         if self.use_pandas and data_key is not None:
-            return _format_to_pandas(data_raw, data_key)
+            return _format_to_pandas(data_raw, data_key, **kwargs)
         else:
             return data_raw, None
 
