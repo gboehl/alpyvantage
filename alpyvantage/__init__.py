@@ -21,8 +21,6 @@ class API(object):
     ordering = ['function', 'symbol', 'interval', 'month', 'outputsize']
 
     def __init__(self, api_key, to_pandas=True, outputsize='full'):
-        """Initialize the API
-        """
         self.key = api_key
         self.use_pandas = to_pandas
         self.outputsize = outputsize
