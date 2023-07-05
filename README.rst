@@ -49,3 +49,9 @@ Or use the ``function`` keyword from the `official API documentation <https://ww
     data, meta_data = api('TIME_SERIES_INTRADAY', symbol='DAX', interval='1min', month='2015-01')
 
 A detailed documentation of the individual functions can be `found here <https://alpyvantage.readthedocs.io>`_.
+
+
+Issues and contributions
+------------------------
+
+Please use the `issues <https://github.com/gboehl/alpyvantage/issues>`_ for questions or if you think anything doesn't do what it is supposed to do. Pull requests are welcome, please include some documentation.
