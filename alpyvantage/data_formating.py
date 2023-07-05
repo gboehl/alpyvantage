@@ -27,6 +27,7 @@ def _format_to_pandas(call_response, data_key, meta_data_key='Meta Data', **kwar
                 data_array.append([v for _, v in val.items()])
             data_pandas = pd.DataFrame(data_array, columns=[
                 k for k, _ in data[0].items()])
+            data_pandas.set_index('date', inplace=True)
     else:
         try:
             data_pandas = pd.DataFrame.from_dict(data,
