@@ -42,7 +42,7 @@ API calls are straightforward. Either use the build-in functions such as `time_s
 
     print(data) # its a pandas.DataFrame
 
-Or use the function keyword from the `official API documentation <https://www.alphavantage.co/documentation/>`_:
+Or use the ``function`` keyword from the `official API documentation <https://www.alphavantage.co/documentation/>`_:
 
 .. code-block:: python
 
