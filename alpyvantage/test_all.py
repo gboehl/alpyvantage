@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from . import API
+from . import _format_to_pandas
 
 api = API('demo')
 
@@ -26,3 +27,8 @@ def test_other():
     _ = api.quote_endpoint('IBM')
     _ = api.ticker_search('tencent')
     _ = api.global_market_status()
+
+def test_custom():
+    data, _ = api("WTI", interval="monthly")
+    data, _ = _format_to_pandas(data, data_key="data", meta_data_key=None)
+    assert data["value"]["1986-01-01"] == 22.93
