@@ -47,4 +47,5 @@ def _format_to_pandas(call_response, data_key, meta_data_key='Meta Data', **kwar
     # convert to pandas._libs.tslibs.timestamps.Timestamp
     data_pandas.index = pd.to_datetime(data_pandas.index)
     data_pandas.columns = [col.split('. ')[1] for col in data_pandas.columns]
+    data_pandas.sort_index(inplace=True)
     return data_pandas, meta_data
