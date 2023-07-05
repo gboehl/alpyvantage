@@ -1,12 +1,12 @@
-pythonvantage
+alPYvantage
 =============
 
-**An alternative python backend to the Alpha Vantage API **
+**An alternative python backend to the Alpha Vantage API**
 
-.. image:: https://img.shields.io/badge/GitHub-gboehl%2Fpythonvantage-blue.svg?style=flat
-    :target: https://github.com/gboehl/pythonvantage
+.. image:: https://img.shields.io/badge/GitHub-gboehl%2Falpyvantage-blue.svg?style=flat
+    :target: https://github.com/gboehl/alpyvantage
 
-**pythonvantage** provides a python backend to the Alpha Vantage API as presented in the `official API documentation <https://www.alphavantage.co/documentation/>`_. You can get a free `API key here <https://www.alphavantage.co/support/#api-key>`_.
+**alpyvantage** provides a python backend to the Alpha Vantage API as presented in the `official API documentation <https://www.alphavantage.co/documentation/>`_. You can get a free `API key here <https://www.alphavantage.co/support/#api-key>`_.
 
 
 Documentation
@@ -16,9 +16,9 @@ API keys are straightforward. Either use the build-in functions such as `time_se
 
 .. code-block:: python
 
-    import pythonvantage
+    import alpyvantage as av
 
-    api = pythonvantage.API(<your_api_key>)
+    api = av.API(<your_api_key>)
 
     data, meta_data = api.time_series_intraday('DAX', interval='1min', month='2015-01')
 
@@ -27,5 +27,3 @@ Or use the function keyword from the `official API documentation <https://www.al
 .. code-block:: python
 
     data, meta_data = api('TIME_SERIES_INTRADAY', symbol='DAX', interval='1min', month='2015-01')
-
-
