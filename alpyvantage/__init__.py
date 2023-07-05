@@ -17,6 +17,7 @@ class API(object):
     """
 
     raw_url = 'https://www.alphavantage.co/query?'
+    ordering = ['function', 'symbol', 'interval', 'month', 'outputsize']
 
     def __init__(self, api_key, to_pandas=True, outputsize='full'):
         """Initialize the API
@@ -52,8 +53,12 @@ class API(object):
 
         # build url from keywords args
         kwargs.update({'function': function, 'apikey': self.key})
+        # keys must be ordered to work with the demo key for testing
+        ordered_keys = [k for k in self.ordering if k in kwargs] + \
+            [k for k in kwargs if k not in self.ordering]
         url = self.raw_url + \
-            '&'.join([k + '=' + str(kwargs[k]) for k in kwargs])
+            '&'.join([k + '=' + str(kwargs[k]) for k in ordered_keys])
+        print(url)
         r = requests.get(url)
         data_raw = r.json()
 
@@ -149,7 +154,7 @@ class API(object):
         meta_data : None or dict
             the meta data if data is a DataFrame
         """
-        kwargs.update({'symbol': symbol, 'outputsize': self.outputsize})
+        kwargs.update({'symbol': symbol})
         return self.__call__('TIME_SERIES_WEEKLY', data_key=f"Weekly Time Series", **kwargs)
 
     def time_series_weekly_adjusted(self, symbol, **kwargs):
@@ -169,7 +174,7 @@ class API(object):
         meta_data : None or dict
             the meta data if data is a DataFrame
         """
-        kwargs.update({'symbol': symbol, 'outputsize': self.outputsize})
+        kwargs.update({'symbol': symbol})
         return self.__call__('TIME_SERIES_WEEKLY_ADJUSTED', data_key=f"Weekly Adjusted Time Series", **kwargs)
 
     def time_series_monthly(self, symbol, **kwargs):
@@ -189,7 +194,7 @@ class API(object):
         meta_data : None or dict
             the meta data if data is a DataFrame
         """
-        kwargs.update({'symbol': symbol, 'outputsize': self.outputsize})
+        kwargs.update({'symbol': symbol})
         return self.__call__('TIME_SERIES_MONTHLY', data_key=f"Monthly Time Series", **kwargs)
 
     def time_series_monthly_adjusted(self, symbol, **kwargs):
@@ -209,7 +214,7 @@ class API(object):
         meta_data : None or dict
             the meta data if data is a DataFrame
         """
-        kwargs.update({'symbol': symbol, 'outputsize': self.outputsize})
+        kwargs.update({'symbol': symbol})
         return self.__call__('TIME_SERIES_MONTHLY_ADJUSTED', data_key=f"Monthly Adjusted Time Series", **kwargs)
 
     def quote_endpoint(self, symbol, **kwargs):
