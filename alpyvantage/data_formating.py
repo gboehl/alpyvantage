@@ -53,5 +53,4 @@ def _format_to_pandas(call_response, data_key, meta_data_key='Meta Data', **kwar
     except IndexError:
         # columns names don't have a dot in them
         pass    
-
     return data_pandas, meta_data
