@@ -29,6 +29,7 @@ setup(
     include_package_data=True,
     packages=['alpyvantage'],
     install_requires=[
-        "pandas"
+        "pandas",
+        "requests"
     ],
 )
