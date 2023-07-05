@@ -15,7 +15,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/x-rst",
     url="https://github.com/gboehl/alpyvantage",
-    name='econpizza',
+    name='alpyvantage',
     version=version['__version__'],
     author="Gregor Boehl",
     author_email="admin@gregorboehl.com",
