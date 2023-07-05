@@ -14,12 +14,12 @@ def test_call():
 
 def test_intraday():
     data, _ = api.time_series_intraday("IBM", interval='5min', month='2009-01')
-    assert data.iloc[-1]['open'] == 49.575
+    assert data.iloc[0]['open'] == 49.575
 
 
 def test_weekly():
     data, _ = api.time_series_weekly("TSCO.LON")
-    assert data.iloc[-1]['open'] == 319.7501
+    assert data.iloc[0]['open'] == 319.7501
 
 
 def test_other():
