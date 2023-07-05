@@ -5,20 +5,21 @@ from .__version__ import __version__
 
 class API(object):
     """Base class storing the API key and some options
+
+    Parameters
+    ----------
+    api_key : string
+        the API key as a string
+    to_pandas : bool, optional
+        whether to return time series as pandas.DataFrame, `True` by default
+    outputsize : bool, optional
+        return full output by default for any call
     """
 
     raw_url = 'https://www.alphavantage.co/query?'
 
     def __init__(self, api_key, to_pandas=True, outputsize='full'):
         """Initialize the API
-        Parameters
-        ----------
-        api_key : string
-            the API key as a string
-        to_pandas : bool, optional
-            whether to return time series as pandas.DataFrame, `True` by default
-        outputsize : bool, optional
-            return full output by default for any call
         """
         self.key = api_key
         self.use_pandas = to_pandas
@@ -26,6 +27,7 @@ class API(object):
 
     def __call__(self, function, data_key=None, **kwargs):
         """API call. Requires the function as in the original Alpha Vantage documentation (https://www.alphavantage.co/documentation/) and takes the API key as given
+
         Parameters
         ----------
         function : string
@@ -34,6 +36,7 @@ class API(object):
             the key for the data in the returned json object
         kwargs : dict
             any other optional keyword(s)
+
         Returns
         -------
         data : dict or pandas.DataFrame
@@ -68,6 +71,7 @@ class API(object):
 
     def time_series_intraday(self, symbol, interval='1min', **kwargs):
         """API call to TIME_SERIES_INTRADAY
+
         Parameters
         ----------
         symbol : string
@@ -76,6 +80,7 @@ class API(object):
             data frequency, defaults to '1min'. See the original Alpha Vantage documentation (https://www.alphavantage.co/documentation/) for options.
         kwargs : dict
             any other optional keyword(s)
+
         Returns
         -------
         data : dict or pandas.DataFrame
@@ -89,12 +94,14 @@ class API(object):
 
     def time_series_daily(self, symbol, **kwargs):
         """API call to TIME_SERIES_DAILY
+
         Parameters
         ----------
         symbol : string
             the ticker symbol
         kwargs : dict
             any other optional keyword(s)
+
         Returns
         -------
         data : dict or pandas.DataFrame
@@ -107,12 +114,14 @@ class API(object):
 
     def time_series_daily_adjusted(self, symbol, **kwargs):
         """API call to TIME_SERIES_DAILY_ADJUSTED
+
         Parameters
         ----------
         symbol : string
             the ticker symbol
         kwargs : dict
             any other optional keyword(s)
+
         Returns
         -------
         data : dict or pandas.DataFrame
@@ -125,12 +134,14 @@ class API(object):
 
     def time_series_weekly(self, symbol, **kwargs):
         """API call to TIME_SERIES_WEEKLY
+
         Parameters
         ----------
         symbol : string
             the ticker symbol
         kwargs : dict
             any other optional keyword(s)
+
         Returns
         -------
         data : dict or pandas.DataFrame
@@ -143,12 +154,14 @@ class API(object):
 
     def time_series_weekly_adjusted(self, symbol, **kwargs):
         """API call to TIME_SERIES_WEEKLY_ADJUSTED
+
         Parameters
         ----------
         symbol : string
             the ticker symbol
         kwargs : dict
             any other optional keyword(s)
+
         Returns
         -------
         data : dict or pandas.DataFrame
@@ -161,12 +174,14 @@ class API(object):
 
     def time_series_monthly(self, symbol, **kwargs):
         """API call to TIME_SERIES_MONTHLY
+
         Parameters
         ----------
         symbol : string
             the ticker symbol
         kwargs : dict
             any other optional keyword(s)
+
         Returns
         -------
         data : dict or pandas.DataFrame
@@ -179,12 +194,14 @@ class API(object):
 
     def time_series_monthly_adjusted(self, symbol, **kwargs):
         """API call to TIME_SERIES_MONTHLY_ADJUSTED
+
         Parameters
         ----------
         symbol : string
             the ticker symbol
         kwargs : dict
             any other optional keyword(s)
+
         Returns
         -------
         data : dict or pandas.DataFrame
@@ -197,12 +214,14 @@ class API(object):
 
     def quote_endpoint(self, symbol, **kwargs):
         """API call to GLOBAL_QUOTE
+
         Parameters
         ----------
         symbol : string
             the ticker symbol
         kwargs : dict
             any other optional keyword(s)
+
         Returns
         -------
         data : dict
@@ -215,12 +234,14 @@ class API(object):
 
     def ticker_search(self, keywords, **kwargs):
         """API call to SYMBOL_SEARCH
+
         Parameters
         ----------
-        symbol : string
-            the ticker symbol
+        keywords : string
+            the ticker keyword(s)
         kwargs : dict
             any other optional keyword(s)
+
         Returns
         -------
         data : dict
@@ -233,12 +254,7 @@ class API(object):
 
     def global_market_status(self):
         """API call to MARKET_STATUS
-        Parameters
-        ----------
-        symbol : string
-            the ticker symbol
-        kwargs : dict
-            any other optional keyword(s)
+
         Returns
         -------
         data : dict
