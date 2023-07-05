@@ -1,4 +1,4 @@
-alPYvantage
+alpyvantage
 =============
 
 **An alternative python backend to the Alpha Vantage API**
