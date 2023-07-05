@@ -30,7 +30,7 @@ in your terminal or Anaconda Prompt.
 Documentation
 -------------
 
-API calls are straightforward. Either use the build-in functions such as `time_series_intraday`, `time_series_weekly`, etc:
+API calls are straightforward. Either use the build-in functions such as ``time_series_intraday``, ``time_series_weekly``, etc.:
 
 .. code-block:: python
 
@@ -42,7 +42,7 @@ API calls are straightforward. Either use the build-in functions such as `time_s
 
     print(data) # its a pandas.DataFrame
 
-Or use the ``function`` keyword from the `official API documentation <https://www.alphavantage.co/documentation/>`_:
+Or use the ``function`` keyword from the `official API documentation <https://www.alphavantage.co/documentation/>`_ and provide the parameters as keyword arguments:
 
 .. code-block:: python
 
