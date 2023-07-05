@@ -12,7 +12,7 @@ alpyvantage
 Documentation
 -------------
 
-API keys are straightforward. Either use the build-in functions such as `time_series_intraday`, `time_series_weekly`, etc:
+API calls are straightforward. Either use the build-in functions such as `time_series_intraday`, `time_series_weekly`, etc:
 
 .. code-block:: python
 
@@ -22,8 +22,12 @@ API keys are straightforward. Either use the build-in functions such as `time_se
 
     data, meta_data = api.time_series_intraday('DAX', interval='1min', month='2015-01')
 
+    print(data) # its a pandas.DataFrame
+
 Or use the function keyword from the `official API documentation <https://www.alphavantage.co/documentation/>`_:
 
 .. code-block:: python
 
     data, meta_data = api('TIME_SERIES_INTRADAY', symbol='DAX', interval='1min', month='2015-01')
+
+A detailed function documentation can be `found here <https://alpyvantage.readthedocs.io>`_.
