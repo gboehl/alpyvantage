@@ -2,9 +2,8 @@
 import pandas as pd
 
 
-def _format_to_pandas(call_response, data_key):
+def _format_to_pandas(call_response, data_key, meta_data_key='Meta Data', **kwargs):
     # mainly taken from alpha_vantage package: https://github.com/RomelTorres/alpha_vantage
-    meta_data_key = 'Meta Data'
 
     if data_key is not None:
         data = call_response[data_key]
@@ -28,6 +27,7 @@ def _format_to_pandas(call_response, data_key):
                 data_array.append([v for _, v in val.items()])
             data_pandas = pd.DataFrame(data_array, columns=[
                 k for k, _ in data[0].items()])
+            data_pandas.set_index('date', inplace=True)
     else:
         try:
             data_pandas = pd.DataFrame.from_dict(data,
@@ -46,5 +46,11 @@ def _format_to_pandas(call_response, data_key):
     data_pandas.index.name = 'date'
     # convert to pandas._libs.tslibs.timestamps.Timestamp
     data_pandas.index = pd.to_datetime(data_pandas.index)
-    data_pandas.columns = [col.split('. ')[1] for col in data_pandas.columns]
+    data_pandas.sort_index(inplace=True)
+    data_pandas = data_pandas.astype(float, errors='ignore')
+    try:
+        data_pandas.columns = [col.split('. ')[1] for col in data_pandas.columns]
+    except IndexError:
+        # columns names don't have a dot in them
+        pass    
     return data_pandas, meta_data
