@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import requests
 from .data_formating import _format_to_pandas
 from .__version__ import __version__
