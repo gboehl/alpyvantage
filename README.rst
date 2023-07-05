@@ -18,7 +18,7 @@ alpyvantage
 Installation
 ------------
 
-Installing the `repository version <https://pypi.org/project/econpizza/>`_ is as simple as
+Installing the `repository version <https://pypi.org/project/econpizza/>`_ is as simple as typing
 
 .. code-block:: bash
 
