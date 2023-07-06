@@ -63,18 +63,19 @@ class API(object):
             raise ConnectionError(
                 f"Server request status code is {r.status_code}.")
 
-        data_raw = r.json()
+        call_response = r.json()
         # API error handling
-        if 'Note' in data_raw:
-            raise AlphaVantageError(data_raw['Note'])
-        if 'Information' in data_raw:
-            raise AlphaVantageError(data_raw['Information'])
+        for message in ('Note', 'Information', 'Error Message'):
+            if message in call_response:
+                raise AlphaVantageError(call_response[message])
+        if not bool(call_response):
+            raise KeyError("API call returned an empty response.")
 
         # return as pandas dataframe if desired
         if self.use_pandas and data_key is not None:
-            return _format_to_pandas(data_raw, data_key, **kwargs)
+            return _format_to_pandas(call_response, data_key, **kwargs)
         else:
-            return data_raw, None
+            return call_response, None
 
     def time_series_intraday(self, symbol, interval='1min', **kwargs):
         """API call to TIME_SERIES_INTRADAY

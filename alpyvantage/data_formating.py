@@ -2,7 +2,7 @@
 import pandas as pd
 
 
-def _format_to_pandas(call_response, data_key, meta_data_key='Meta Data', **kwargs):
+def _format_to_pandas(call_response, data_key, meta_data_key=None, **kwargs):
     # mainly taken from alpha_vantage package: https://github.com/RomelTorres/alpha_vantage
 
     if data_key is not None:
@@ -12,7 +12,7 @@ def _format_to_pandas(call_response, data_key, meta_data_key='Meta Data', **kwar
     if meta_data_key is not None:
         meta_data = call_response[meta_data_key]
     else:
-        meta_data = None
+        meta_data = call_response.get('Meta Data')
     # Allow to override the output parameter in the call
     if isinstance(data, list):
         # If the call returns a list, then we will append them
@@ -49,8 +49,9 @@ def _format_to_pandas(call_response, data_key, meta_data_key='Meta Data', **kwar
     data_pandas.sort_index(inplace=True)
     data_pandas = data_pandas.astype(float, errors='ignore')
     try:
-        data_pandas.columns = [col.split('. ')[1] for col in data_pandas.columns]
+        data_pandas.columns = [col.split('. ')[1]
+                               for col in data_pandas.columns]
     except IndexError:
         # columns names don't have a dot in them
-        pass    
+        pass
     return data_pandas, meta_data
