@@ -47,8 +47,7 @@ def _format_to_pandas(call_response, data_key, meta_data_key=None, **kwargs):
     # convert to pandas._libs.tslibs.timestamps.Timestamp
     data_pandas.index = pd.to_datetime(data_pandas.index)
     data_pandas.sort_index(inplace=True)
-    print(data_pandas)
-    data_pandas= data_pandas.apply(pd.to_numeric, errors='coerce')
+    data_pandas = data_pandas.apply(pd.to_numeric, errors='coerce')
     try:
         data_pandas.columns = [col.split('. ')[1]
                                for col in data_pandas.columns]
